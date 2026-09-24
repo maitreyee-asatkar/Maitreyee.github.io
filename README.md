@@ -37,3 +37,9 @@ SOC Analyst · Cybersecurity Analyst · Security Engineer · Security Support An
 ## Evidence-first principle
 
 This portfolio intentionally separates **professional experience** from **hands-on labs and academic/research projects** so recruiters can see what was performed in employment versus what was demonstrated through projects and labs.
+
+
+## AI / LLM Engineering
+
+- **SentinelRAG — AI Security Knowledge Assistant:** Built a Retrieval-Augmented Generation application using Azure OpenAI, Azure AI Search, Python, FastAPI and Docker. The project demonstrates document ingestion, embeddings, hybrid retrieval, grounded generation, source-aware responses and prompt-injection guardrails.
+- Project source: [projects/sentinel-rag](projects/sentinel-rag/)

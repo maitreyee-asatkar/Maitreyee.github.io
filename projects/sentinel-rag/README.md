@@ -1,71 +1,36 @@
 # SentinelRAG — AI Security Knowledge Assistant
 
-SentinelRAG is a portfolio project demonstrating Retrieval-Augmented Generation (RAG) for cybersecurity and compliance knowledge.
+Azure OpenAI + Azure AI Search + RAG + FastAPI + Docker.
+
+SentinelRAG is a portfolio project demonstrating how Retrieval-Augmented Generation can help security teams query cybersecurity and compliance documentation while keeping answers grounded in retrieved evidence.
 
 ## Architecture
 
-User → FastAPI → Azure AI Search (hybrid retrieval) → Azure OpenAI Responses API → grounded answer + sources
+Browser → FastAPI → Azure AI Search hybrid/vector retrieval → Azure OpenAI Responses API → grounded answer + sources.
 
-## Azure services
+## Security engineering
 
-- Azure OpenAI — LLM inference and embeddings
-- Azure AI Search — keyword + vector/hybrid retrieval
-- Microsoft Entra ID — recommended passwordless authentication
-
-## Features
-
-- Markdown/text document ingestion
-- Chunking with source metadata
-- Embedding generation
-- Azure AI Search vector index
-- Hybrid retrieval
-- Grounded LLM responses
-- Source-aware API responses
+- Evidence-grounded generation
+- Source-aware responses
 - Prompt-injection guardrails
-- FastAPI REST API
-- Docker support
+- Azure identity authentication pattern
+- No production secrets committed
+- Deterministic evaluation check
+- Dockerized deployment
+- GitHub Actions CI validation
 
-## Run locally
+## Run
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-az login
-python -m app.ingest
-uvicorn app.main:app --reload --port 8000
-```
+Copy .env.example to .env, authenticate with Azure CLI, index the sample documents, then run the FastAPI service.
 
-Then open `http://localhost:8000/docs`.
+API documentation is available at /docs.
 
-## Example
+## Portfolio extensions
 
-```bash
-curl -X POST http://localhost:8000/ask \
-  -H "Content-Type: application/json" \
-  -d '{"question":"What should an employee do after a suspected phishing incident?"}'
-```
+Planned integrations include Microsoft Sentinel incidents, Microsoft Defender for Endpoint telemetry, Entra ID authentication, Application Insights tracing, document-level authorization, RAG quality metrics, and Azure Container Apps.
 
-## Security design
+## Resume-ready
 
-The system instructs the model to use only retrieved evidence, refuse unsupported answers, and treat retrieved documents as untrusted data. This demonstrates basic defenses against unsupported generation and prompt injection.
+AI-Powered Security Knowledge Assistant | Azure OpenAI, Azure AI Search, Python, RAG, FastAPI, Docker
 
-## Next extensions
-
-- Microsoft Sentinel incident ingestion
-- Microsoft Defender for Endpoint telemetry
-- Entra ID authentication
-- Document-level access controls
-- RAG evaluation and groundedness metrics
-- Application Insights telemetry
-- GitHub Actions CI/CD
-- Azure Container Apps deployment
-
-## Resume
-
-**AI-Powered Security Knowledge Assistant | Azure OpenAI, Azure AI Search, Python, RAG, FastAPI, Docker**
-
-- Built a RAG application using Azure OpenAI and Azure AI Search to provide grounded responses from cybersecurity and compliance documentation.
-- Implemented document chunking, embeddings, vector/hybrid retrieval, prompt guardrails, and source-aware responses.
-- Exposed the solution through FastAPI and containerized it with Docker for repeatable deployment.
+Built a RAG application using Azure OpenAI and Azure AI Search to provide grounded responses from cybersecurity and compliance documentation. Implemented document chunking, embeddings, hybrid retrieval, prompt guardrails, source-aware responses, evaluation checks, and a browser-based interface. Containerized the application with Docker and added GitHub Actions CI validation.

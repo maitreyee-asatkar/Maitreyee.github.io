@@ -25,6 +25,7 @@
         <p class="eyebrow">SECURITY OPERATIONS CENTER</p>
         <h1>AI Security Dashboard</h1>
         <p class="hero-copy">A cloud-ready security analytics experience that turns alerts into prioritized, explainable incident summaries.</p>
+        <div class="soc-nav"><button data-jump="incidentList">Incidents</button><button data-jump="aiInvestigation">AI Investigation</button><button data-jump="attackMatrix">MITRE ATT&CK</button><button data-jump="attackSimulator">Attack Simulator</button><button data-jump="architecture">Architecture</button></div>
       </div>
     </section>
 
@@ -83,6 +84,53 @@
       </div>
       <div id="incidentList" class="incident-list"></div>
       <p class="table-hint">Select an incident to open the investigation workspace.</p>
+    </section>
+
+    <section id="aiInvestigation" class="panel advanced-panel">
+      <div class="panel-heading"><div><p class="eyebrow">AI THREAT INVESTIGATION</p><h2>Explainable correlation engine</h2></div><span class="live-pill">DEMO ENGINE</span></div>
+      <div class="ai-engine-grid">
+        <div class="engine-visual"><div class="pulse-core">AI</div><span>IDENTITY</span><span>ENDPOINT</span><span>NETWORK</span><span>CLOUD</span></div>
+        <div class="engine-output"><p class="muted">Correlates multiple demo signals into an analyst-readable hypothesis. No external AI API is used.</p>
+          <div class="signal-row"><span>Geographic anomaly</span><b>+28</b></div><div class="signal-row"><span>MFA failure burst</span><b>+24</b></div><div class="signal-row"><span>New device fingerprint</span><b>+19</b></div><div class="signal-row"><span>Unusual PowerShell</span><b>+21</b></div>
+          <button id="deepAnalyzeBtn" class="primary-btn">Run deep investigation</button>
+        </div>
+      </div>
+      <div id="deepAnalysisResult" class="deep-result" hidden></div>
+    </section>
+
+    <section id="attackMatrix" class="panel advanced-panel">
+      <div class="panel-heading"><div><p class="eyebrow">THREAT FRAMEWORK</p><h2>MITRE ATT&CK mapping</h2></div><span class="ai-badge">MAPPED SIGNALS</span></div>
+      <div class="attack-grid">
+        <button class="attack-card" data-technique="T1078" data-name="Valid Accounts" data-desc="Maps identity anomalies and suspicious authenticated activity to potential abuse of valid credentials."><span>T1078</span><strong>Valid Accounts</strong><small>Persistence • Defense Evasion</small></button>
+        <button class="attack-card" data-technique="T1059.001" data-name="PowerShell" data-desc="Maps suspicious PowerShell execution to command and scripting interpreter activity."><span>T1059.001</span><strong>PowerShell</strong><small>Execution</small></button>
+        <button class="attack-card" data-technique="T1110" data-name="Brute Force" data-desc="Maps repeated authentication failures to credential-access patterns such as password guessing or spraying."><span>T1110</span><strong>Brute Force</strong><small>Credential Access</small></button>
+        <button class="attack-card" data-technique="T1071.001" data-name="Web Protocols" data-desc="Maps unusual outbound web traffic to application-layer protocol activity requiring validation."><span>T1071.001</span><strong>Web Protocols</strong><small>Command & Control</small></button>
+      </div>
+      <div id="attackDetail" class="attack-detail"><strong>Select a technique</strong><p>Click a mapped technique to see why the demo detection is associated with it.</p></div>
+    </section>
+
+    <section id="attackSimulator" class="panel advanced-panel">
+      <div class="panel-heading"><div><p class="eyebrow">PURPLE TEAM LAB</p><h2>Attack simulation</h2></div><span id="simulationState" class="sim-state">READY</span></div>
+      <p class="muted">Generate safe, simulated telemetry to demonstrate detection → scoring → investigation. This does not execute attacks or touch external systems.</p>
+      <div class="sim-buttons">
+        <button data-sim="credential">🔐 Credential Attack</button><button data-sim="travel">🌎 Impossible Travel</button><button data-sim="powershell">⌘ PowerShell Activity</button><button data-sim="exfil">⇧ Data Exfiltration</button><button data-sim="mfa">✓ MFA Fatigue</button>
+      </div>
+      <div id="simulationPipeline" class="simulation-pipeline">
+        <div><span>1</span><strong>Telemetry</strong><small>Waiting</small></div><b>→</b><div><span>2</span><strong>Detection</strong><small>Waiting</small></div><b>→</b><div><span>3</span><strong>Risk Score</strong><small>Waiting</small></div><b>→</b><div><span>4</span><strong>AI Triage</strong><small>Waiting</small></div>
+      </div>
+      <div id="simulationLog" class="simulation-log">SOC-LAB &gt; Select a simulation scenario.</div>
+    </section>
+
+    <section id="architecture" class="panel advanced-panel">
+      <div class="panel-heading"><div><p class="eyebrow">CLOUD ARCHITECTURE</p><h2>Production integration roadmap</h2></div><span class="live-pill">AZURE HOSTED</span></div>
+      <div class="architecture-map">
+        <div class="arch-node source"><span>CODE</span><strong>GitHub</strong><small>Source control</small></div><i>→</i>
+        <div class="arch-node"><span>CI/CD</span><strong>GitHub Actions</strong><small>Automated deployment</small></div><i>→</i>
+        <div class="arch-node active"><span>AZURE</span><strong>App Service</strong><small>F1 demo hosting</small></div><i>→</i>
+        <div class="arch-node"><span>SOC UI</span><strong>Security Console</strong><small>Analyst experience</small></div>
+      </div>
+      <div class="future-integrations"><span>Future production connectors</span><div><b>Microsoft Sentinel</b><b>Microsoft Defender</b><b>Microsoft Entra ID</b><b>Azure Functions</b><b>Approved AI service</b></div></div>
+      <p class="demo-note">Current portfolio deployment uses simulated telemetry and client-side analysis. Production connectors shown here are an architecture roadmap, not active integrations.</p>
     </section>
 
     <section class="metrics" aria-label="Security metrics">
@@ -160,6 +208,6 @@
     </form>
   </section>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

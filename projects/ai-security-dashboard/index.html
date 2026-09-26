@@ -82,6 +82,7 @@
         </select>
       </div>
       <div id="incidentList" class="incident-list"></div>
+      <p class="table-hint">Select an incident to open the investigation workspace.</p>
     </section>
 
     <section class="metrics" aria-label="Security metrics">
@@ -98,6 +99,48 @@
 
     <footer><span>AI Security Operations Dashboard</span><span>Portfolio project • Demo data only</span></footer>
   </main>
+
+  <div id="investigationOverlay" class="investigation-overlay" hidden></div>
+  <aside id="investigationDrawer" class="investigation-drawer" aria-label="Incident investigation workspace" hidden>
+    <div class="investigation-head">
+      <div>
+        <p class="eyebrow">LIVE INVESTIGATION</p>
+        <h2 id="investigationTitle">Incident investigation</h2>
+      </div>
+      <button id="investigationClose" class="icon-btn" aria-label="Close investigation">×</button>
+    </div>
+    <div class="investigation-content">
+      <div class="investigation-status">
+        <span id="investigationSeverity" class="badge">CRITICAL</span>
+        <span id="investigationId">INC-1042</span>
+        <span id="investigationSource">Identity telemetry</span>
+      </div>
+      <div class="investigation-score">
+        <div><span>Risk score</span><strong id="investigationRisk">94</strong><small>/100</small></div>
+        <div><span>Confidence</span><strong id="investigationConfidence">91%</strong></div>
+      </div>
+      <section class="investigation-section">
+        <p class="eyebrow">EVENT TIMELINE</p>
+        <div id="investigationTimeline" class="timeline"></div>
+      </section>
+      <section class="investigation-section">
+        <p class="eyebrow">AI INVESTIGATION</p>
+        <div class="investigation-card">
+          <strong id="investigationClassification">Potential account compromise</strong>
+          <p id="investigationReason">Geographic anomaly combined with authentication activity requires analyst validation.</p>
+        </div>
+      </section>
+      <section class="investigation-section">
+        <p class="eyebrow">RECOMMENDED ACTIONS</p>
+        <div id="investigationActions" class="action-list"></div>
+      </section>
+      <div class="investigation-actions">
+        <button id="investigateBtn" class="secondary-btn">Mark investigating</button>
+        <button id="containBtn" class="primary-btn">Containment checklist</button>
+      </div>
+      <p class="demo-note">Demo workflow only. No real security actions are executed.</p>
+    </div>
+  </aside>
 
   <button id="riskBotToggle" class="riskbot-launcher" aria-label="Open risk mitigation assistant">✦ Risk Mitigation AI</button>
   <section id="riskBot" class="riskbot" aria-label="Risk mitigation assistant" hidden>

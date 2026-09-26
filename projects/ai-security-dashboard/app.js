@@ -88,4 +88,56 @@ function addMessage(text,type){const el=document.createElement("div");el.classNa
 function askBot(q){if(!q.trim())return;addMessage(q,"user");setTimeout(()=>addMessage(botReply(q),"bot"),250);botInput.value=""}
 document.getElementById("riskBotForm").addEventListener("submit",e=>{e.preventDefault();askBot(botInput.value)});
 document.querySelectorAll(".riskbot-suggestions button").forEach(b=>b.addEventListener("click",()=>askBot(b.dataset.prompt)));
+
+
+document.querySelectorAll("[data-jump]").forEach(btn=>btn.addEventListener("click",()=>{
+  const target=document.getElementById(btn.dataset.jump);
+  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+}));
+
+document.querySelectorAll(".attack-card").forEach(card=>card.addEventListener("click",()=>{
+  document.querySelectorAll(".attack-card").forEach(x=>x.classList.remove("selected"));
+  card.classList.add("selected");
+  document.getElementById("attackDetail").innerHTML=`<span class="technique-code">${card.dataset.technique}</span><strong>${card.dataset.name}</strong><p>${card.dataset.desc}</p><small>Framework mapping is illustrative and should be validated against the specific evidence in a production investigation.</small>`;
+}));
+
+document.getElementById("deepAnalyzeBtn").addEventListener("click",()=>{
+  const result=document.getElementById("deepAnalysisResult");
+  const btn=document.getElementById("deepAnalyzeBtn");
+  btn.textContent="Correlating signals…";btn.disabled=true;
+  setTimeout(()=>{
+    result.hidden=false;
+    result.innerHTML=`<div class="deep-result-head"><span>AI INVESTIGATION COMPLETE</span><b>91% confidence</b></div><h3>Likely credential compromise with post-authentication activity</h3><p>The demo engine correlated an impossible-travel pattern, repeated MFA failures, a new device fingerprint, and unusual endpoint scripting. The combination raises priority, but each signal still requires analyst validation.</p><div class="finding-grid"><div><span>Classification</span><strong>Credential compromise</strong></div><div><span>Primary ATT&CK</span><strong>T1078 Valid Accounts</strong></div><div><span>Potential impact</span><strong>Account takeover</strong></div><div><span>Recommended priority</span><strong>P1 review</strong></div></div>`;
+    btn.textContent="Re-run deep investigation";btn.disabled=false;
+    result.scrollIntoView({behavior:"smooth",block:"nearest"});
+  },650);
+});
+
+const simulationProfiles={
+ credential:{name:"Credential Attack",risk:89,log:["Authentication failures generated","Password-spray pattern detected","Identity correlation rule matched","Risk score elevated to 89","AI triage recommends credential review"]},
+ travel:{name:"Impossible Travel",risk:94,log:["New York sign-in generated","London sign-in generated 2 minutes later","Geographic anomaly detected","Risk score elevated to 94","AI triage recommends identity investigation"]},
+ powershell:{name:"PowerShell Activity",risk:91,log:["Endpoint process telemetry generated","Suspicious PowerShell chain observed","Execution rule matched","Risk score elevated to 91","AI triage recommends endpoint investigation"]},
+ exfil:{name:"Data Exfiltration",risk:86,log:["Large outbound transfer generated","Unusual destination correlated","Data-loss signal matched","Risk score elevated to 86","AI triage recommends transfer validation"]},
+ mfa:{name:"MFA Fatigue",risk:82,log:["Repeated MFA prompts generated","Failure burst detected","Identity risk rule matched","Risk score elevated to 82","AI triage recommends user validation"]}
+};
+let simulationTimer;
+document.querySelectorAll("[data-sim]").forEach(btn=>btn.addEventListener("click",()=>runSimulation(btn.dataset.sim)));
+function runSimulation(key){
+  clearInterval(simulationTimer);
+  const profile=simulationProfiles[key],state=document.getElementById("simulationState"),log=document.getElementById("simulationLog");
+  const steps=[...document.querySelectorAll("#simulationPipeline div")];
+  steps.forEach(x=>{x.classList.remove("complete","active");x.querySelector("small").textContent="Waiting"});
+  state.textContent="RUNNING";state.classList.add("running");
+  log.innerHTML=`SOC-LAB &gt; Starting <b>${profile.name}</b> simulation…`;
+  let i=0;
+  simulationTimer=setInterval(()=>{
+    if(i>0){steps[i-1].classList.remove("active");steps[i-1].classList.add("complete");steps[i-1].querySelector("small").textContent="Complete"}
+    if(i<steps.length){steps[i].classList.add("active");steps[i].querySelector("small").textContent=profile.log[i];log.innerHTML+=`<br>SOC-LAB &gt; ${profile.log[i]}`;i++;return}
+    clearInterval(simulationTimer);state.textContent="DETECTED";state.classList.remove("running");state.classList.add("detected");
+    riskScore.innerHTML=`${profile.risk}<span>/100</span>`;summaryScore.textContent=profile.risk;
+    summaryTitle.textContent=profile.name+" detected";
+    summaryText.textContent=profile.log[4]+". Review the generated demo evidence before containment.";
+    log.innerHTML+=`<br><b>SOC-LAB &gt; Simulation complete — no real attack was executed.</b>`;
+  },420);
+}
 renderIncidents();

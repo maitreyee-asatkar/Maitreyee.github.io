@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Security Operations Dashboard - a portfolio project demonstrating security telemetry, risk scoring, and AI-assisted incident triage.">
+  <title>AI Security Operations Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">AI</div>
+      <div>
+        <strong>Security Console</strong>
+        <span>AI-Assisted SOC Dashboard</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="status-dot"></span>
+      <span>Demo environment</span>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SECURITY OPERATIONS CENTER</p>
+        <h1>AI Security Dashboard</h1>
+        <p class="hero-copy">
+          A cloud-ready security analytics experience that turns alerts into prioritized,
+          explainable incident summaries.
+        </p>
+      </div>
+      <div class="hero-meta">
+        <span>Last refresh</span>
+        <strong id="lastRefresh">Just now</strong>
+        <button id="refreshBtn" class="primary-btn">Refresh telemetry</button>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Security metrics">
+      <article class="metric-card">
+        <span>Active alerts</span>
+        <strong id="activeAlerts">27</strong>
+        <small class="warning">▲ 8% from previous period</small>
+      </article>
+      <article class="metric-card">
+        <span>Critical incidents</span>
+        <strong id="criticalCount">4</strong>
+        <small class="danger">Requires attention</small>
+      </article>
+      <article class="metric-card">
+        <span>Risk score</span>
+        <strong id="riskScore">72<span>/100</span></strong>
+        <small>Elevated organizational risk</small>
+      </article>
+      <article class="metric-card">
+        <span>Mean triage time</span>
+        <strong>11m</strong>
+        <small class="success">▼ 18% with automation</small>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel incidents-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">INCIDENT QUEUE</p>
+            <h2>Prioritized security events</h2>
+          </div>
+          <select id="severityFilter" aria-label="Filter by severity">
+            <option value="all">All severities</option>
+            <option value="critical">Critical</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+          </select>
+        </div>
+        <div id="incidentList" class="incident-list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">AI TRIAGE</p>
+            <h2>Analyst summary</h2>
+          </div>
+          <span class="ai-badge">AI ASSIST</span>
+        </div>
+        <div class="ai-summary">
+          <div class="summary-score"><span id="summaryScore">72</span><small>Risk</small></div>
+          <div>
+            <h3 id="summaryTitle">Credential abuse pattern detected</h3>
+            <p id="summaryText">
+              Multiple failed sign-ins followed by a successful authentication from an
+              unfamiliar location. The pattern warrants investigation for possible account compromise.
+            </p>
+          </div>
+        </div>
+        <div class="recommendations">
+          <h3>Recommended analyst actions</h3>
+          <ol>
+            <li>Validate the user's recent sign-in locations and device history.</li>
+            <li>Review MFA and Conditional Access results for the affected account.</li>
+            <li>Temporarily increase monitoring on related identities and IP addresses.</li>
+          </ol>
+        </div>
+        <button id="analyzeBtn" class="secondary-btn">Run AI-style analysis</button>
+      </article>
+    </section>
+
+    <section class="grid lower-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">TELEMETRY</p>
+            <h2>Alert distribution</h2>
+          </div>
+        </div>
+        <div class="bars" id="bars">
+          <div><span>Identity</span><i style="--value:82%"></i><b>82%</b></div>
+          <div><span>Endpoint</span><i style="--value:64%"></i><b>64%</b></div>
+          <div><span>Network</span><i style="--value:48%"></i><b>48%</b></div>
+          <div><span>Cloud</span><i style="--value:71%"></i><b>71%</b></div>
+          <div><span>Data</span><i style="--value:37%"></i><b>37%</b></div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">ARCHITECTURE</p>
+            <h2>Cloud security workflow</h2>
+          </div>
+        </div>
+        <div class="flow">
+          <span>Telemetry</span><b>→</b><span>Normalization</span><b>→</b><span>Risk scoring</span><b>→</b><span>Analyst triage</span>
+        </div>
+        <p class="muted">
+          Designed as a portfolio demonstration. The current UI uses deterministic demo data;
+          production deployment can connect the workflow to Microsoft Sentinel, Defender,
+          Azure Functions, or another approved telemetry source.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      <span>AI Security Operations Dashboard</span>
+      <span>Portfolio project • Demo data only</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

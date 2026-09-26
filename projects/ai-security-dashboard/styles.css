@@ -44,8 +44,27 @@ button, select { font: inherit; }
 .eyebrow { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: .14em; margin: 0 0 8px; }
 h1 { font-size: clamp(32px, 5vw, 58px); margin: 0; letter-spacing: -.04em; }
 .hero-copy { max-width: 680px; color: var(--muted); line-height: 1.65; margin-bottom: 0; }
-.hero-meta { text-align: right; color: var(--muted); font-size: 12px; }
-.hero-meta strong { display: block; color: var(--text); margin: 3px 0 10px; }
+.hero-meta { width: min(430px, 100%); text-align: right; color: var(--muted); font-size: 12px; }
+.hero-ai-summary {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(16,31,51,.94), rgba(10,23,39,.94));
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+.hero-ai-summary .panel-heading { margin-bottom: 12px; }
+.hero-ai-summary .panel-heading h2 { font-size: 17px; }
+.hero-ai-summary .ai-summary { grid-template-columns: 58px 1fr; gap: 12px; padding: 12px; }
+.hero-ai-summary .summary-score { width: 54px; height: 54px; }
+.hero-ai-summary .summary-score span { font-size: 17px; }
+.hero-ai-summary .ai-summary h3 { font-size: 13px; }
+.hero-ai-summary .ai-summary p { font-size: 11px; line-height: 1.5; }
+.hero-ai-summary .recommendations { margin: 12px 0; }
+.hero-ai-summary .recommendations ol { font-size: 10px; line-height: 1.55; }
+.hero-ai-summary .secondary-btn { width: 100%; }
+.refresh-meta { margin-top: 12px; }
+.refresh-meta strong { display: block; color: var(--text); margin: 3px 0 10px; }
 .primary-btn, .secondary-btn { padding: 10px 14px; cursor: pointer; transition: .2s ease; }
 .primary-btn { background: linear-gradient(135deg, var(--accent), #5b7cff); border: 0; font-weight: 750; }
 .secondary-btn:hover, .icon-btn:hover, .primary-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }

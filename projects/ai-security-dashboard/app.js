@@ -1,65 +1,25 @@
-const incidents = [
-  { severity: "critical", title: "Impossible-travel sign-in", detail: "Identity • 2 min ago", risk: 94 },
-  { severity: "critical", title: "Suspicious PowerShell execution", detail: "Endpoint • 7 min ago", risk: 91 },
-  { severity: "high", title: "Multiple MFA failures", detail: "Identity • 12 min ago", risk: 78 },
-  { severity: "high", title: "Unusual outbound connection", detail: "Network • 19 min ago", risk: 74 },
-  { severity: "medium", title: "Legacy authentication attempt", detail: "Identity • 27 min ago", risk: 58 },
-  { severity: "medium", title: "Large file transfer", detail: "Data • 41 min ago", risk: 51 }
+const incidents=[{severity:"critical",title:"Impossible-travel sign-in",detail:"Identity • 2 min ago",risk:94},{severity:"critical",title:"Suspicious PowerShell execution",detail:"Endpoint • 7 min ago",risk:91},{severity:"high",title:"Multiple MFA failures",detail:"Identity • 12 min ago",risk:78},{severity:"high",title:"Unusual outbound connection",detail:"Network • 19 min ago",risk:74},{severity:"medium",title:"Legacy authentication attempt",detail:"Identity • 27 min ago",risk:58},{severity:"medium",title:"Large file transfer",detail:"Data • 41 min ago",risk:51}];
+const incidentList=document.getElementById("incidentList"),filter=document.getElementById("severityFilter"),activeAlerts=document.getElementById("activeAlerts"),criticalCount=document.getElementById("criticalCount"),riskScore=document.getElementById("riskScore"),summaryScore=document.getElementById("summaryScore"),summaryTitle=document.getElementById("summaryTitle"),summaryText=document.getElementById("summaryText"),lastRefresh=document.getElementById("lastRefresh");
+function renderIncidents(){const selected=filter.value,visible=selected==="all"?incidents:incidents.filter(i=>i.severity===selected);incidentList.innerHTML=visible.map(i=>`<div class="incident"><div class="severity ${i.severity}"></div><div><h3>${i.title}</h3><p>${i.detail}</p></div><div><span class="badge">${i.severity}</span><p>Risk ${i.risk}</p></div></div>`).join("")}
+function refreshTelemetry(){const alertCount=24+Math.floor(Math.random()*8),critical=3+Math.floor(Math.random()*3),score=66+Math.floor(Math.random()*15);activeAlerts.textContent=alertCount;criticalCount.textContent=critical;riskScore.innerHTML=`${score}<span>/100</span>`;summaryScore.textContent=score;lastRefresh.textContent=new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}
+document.getElementById("refreshBtn").addEventListener("click",refreshTelemetry);filter.addEventListener("change",renderIncidents);
+document.getElementById("analyzeBtn").addEventListener("click",()=>{const top=incidents[0];summaryScore.textContent=top.risk;summaryTitle.textContent="High-confidence identity attack pattern";summaryText.textContent="The demo correlation engine connected geographic anomaly, authentication failures, and endpoint activity. An analyst should validate the identity and affected device before containment."});
+document.getElementById("themeToggle").addEventListener("click",()=>document.body.classList.toggle("light"));
+
+const bot=document.getElementById("riskBot"),botMessages=document.getElementById("riskBotMessages"),botInput=document.getElementById("riskBotInput");
+document.getElementById("riskBotToggle").addEventListener("click",()=>{bot.hidden=false;botInput.focus()});
+document.getElementById("riskBotClose").addEventListener("click",()=>bot.hidden=true);
+const mitigationRules=[
+{keys:["impossible","travel"],answer:"Mitigation: validate the sign-in location and device, review recent authentication history, revoke suspicious sessions if compromise is suspected, require MFA reauthentication, and investigate the source IP. In production, correlate Entra ID sign-in risk with Sentinel incidents before containment."},
+{keys:["mfa","failure"],answer:"Mitigation: review the affected identity and device, look for password-spray patterns, verify Conditional Access and MFA results, temporarily increase monitoring, and consider blocking suspicious IPs or requiring a credential reset when evidence supports compromise."},
+{keys:["powershell","script"],answer:"Mitigation: inspect the process tree and command line, identify the initiating user/device, check for encoded or downloaded commands, isolate the endpoint if malicious activity is confirmed, and review Defender telemetry for persistence or lateral movement."},
+{keys:["risk score","high risk","risk"],answer:"Mitigation: prioritize critical incidents first, identify which identities/endpoints/networks drive the score, validate the underlying detections, contain confirmed threats, and document remediation. A score alone should not trigger destructive actions."},
+{keys:["outbound","connection","network"],answer:"Mitigation: identify the destination, process, user, and volume; compare the destination against approved services and threat intelligence; restrict confirmed malicious destinations; and investigate the originating endpoint for compromise."},
+{keys:["legacy","authentication"],answer:"Mitigation: identify applications still using legacy authentication, migrate them to modern authentication, apply Conditional Access controls, and monitor for repeated legacy-auth attempts during the transition."}
 ];
-
-const incidentList = document.getElementById("incidentList");
-const filter = document.getElementById("severityFilter");
-const activeAlerts = document.getElementById("activeAlerts");
-const criticalCount = document.getElementById("criticalCount");
-const riskScore = document.getElementById("riskScore");
-const summaryScore = document.getElementById("summaryScore");
-const summaryTitle = document.getElementById("summaryTitle");
-const summaryText = document.getElementById("summaryText");
-const lastRefresh = document.getElementById("lastRefresh");
-
-function renderIncidents() {
-  const selected = filter.value;
-  const visible = selected === "all" ? incidents : incidents.filter(i => i.severity === selected);
-  incidentList.innerHTML = visible.map(i => `
-    <div class="incident">
-      <div class="severity ${i.severity}"></div>
-      <div>
-        <h3>${i.title}</h3>
-        <p>${i.detail}</p>
-      </div>
-      <div>
-        <span class="badge">${i.severity}</span>
-        <p>Risk ${i.risk}</p>
-      </div>
-    </div>
-  `).join("");
-}
-
-function refreshTelemetry() {
-  const alertCount = 24 + Math.floor(Math.random() * 8);
-  const critical = 3 + Math.floor(Math.random() * 3);
-  const score = 66 + Math.floor(Math.random() * 15);
-  activeAlerts.textContent = alertCount;
-  criticalCount.textContent = critical;
-  riskScore.innerHTML = `${score}<span>/100</span>`;
-  summaryScore.textContent = score;
-  lastRefresh.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-document.getElementById("refreshBtn").addEventListener("click", refreshTelemetry);
-filter.addEventListener("change", renderIncidents);
-
-document.getElementById("analyzeBtn").addEventListener("click", () => {
-  const top = incidents[0];
-  summaryScore.textContent = top.risk;
-  summaryTitle.textContent = "High-confidence identity attack pattern";
-  summaryText.textContent =
-    "The demo correlation engine connected geographic anomaly, authentication failures, and endpoint activity. " +
-    "An analyst should validate the identity and affected device before containment.";
-});
-
-document.getElementById("themeToggle").addEventListener("click", () => {
-  document.body.classList.toggle("light");
-});
-
+function botReply(q){const text=q.toLowerCase();const rule=mitigationRules.find(r=>r.keys.every(k=>text.includes(k)))||mitigationRules.find(r=>r.keys.some(k=>text.includes(k)));return rule?rule.answer:"Start with the alert context: affected identity/device, time, source IP, destination, process, and related events. Then validate the detection, contain confirmed threats, remediate the root cause, and document the evidence. This demo assistant provides guidance only; production actions should be validated by an analyst."}
+function addMessage(text,type){const el=document.createElement("div");el.className=type==="user"?"user-message":"bot-message";el.textContent=text;botMessages.appendChild(el);botMessages.scrollTop=botMessages.scrollHeight}
+function askBot(q){if(!q.trim())return;addMessage(q,"user");setTimeout(()=>addMessage(botReply(q),"bot"),250);botInput.value=""}
+document.getElementById("riskBotForm").addEventListener("submit",e=>{e.preventDefault();askBot(botInput.value)});
+document.querySelectorAll(".riskbot-suggestions button").forEach(b=>b.addEventListener("click",()=>askBot(b.dataset.prompt)));
 renderIncidents();

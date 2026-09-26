@@ -34,9 +34,39 @@
         </p>
       </div>
       <div class="hero-meta">
-        <span>Last refresh</span>
-        <strong id="lastRefresh">Just now</strong>
-        <button id="refreshBtn" class="primary-btn">Refresh telemetry</button>
+        <div class="hero-ai-summary">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">AI TRIAGE</p>
+              <h2>Analyst summary</h2>
+            </div>
+            <span class="ai-badge">AI ASSIST</span>
+          </div>
+          <div class="ai-summary">
+            <div class="summary-score"><span id="summaryScore">72</span><small>Risk</small></div>
+            <div>
+              <h3 id="summaryTitle">Credential abuse pattern detected</h3>
+              <p id="summaryText">
+                Multiple failed sign-ins followed by a successful authentication from an
+                unfamiliar location. The pattern warrants investigation for possible account compromise.
+              </p>
+            </div>
+          </div>
+          <div class="recommendations">
+            <h3>Recommended analyst actions</h3>
+            <ol>
+              <li>Validate recent sign-in locations and device history.</li>
+              <li>Review MFA and Conditional Access results.</li>
+              <li>Increase monitoring on related identities and IP addresses.</li>
+            </ol>
+          </div>
+          <button id="analyzeBtn" class="secondary-btn">Run AI-style analysis</button>
+        </div>
+        <div class="refresh-meta">
+          <span>Last refresh</span>
+          <strong id="lastRefresh">Just now</strong>
+          <button id="refreshBtn" class="primary-btn">Refresh telemetry</button>
+        </div>
       </div>
     </section>
 
@@ -80,34 +110,6 @@
         <div id="incidentList" class="incident-list"></div>
       </article>
 
-      <article class="panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">AI TRIAGE</p>
-            <h2>Analyst summary</h2>
-          </div>
-          <span class="ai-badge">AI ASSIST</span>
-        </div>
-        <div class="ai-summary">
-          <div class="summary-score"><span id="summaryScore">72</span><small>Risk</small></div>
-          <div>
-            <h3 id="summaryTitle">Credential abuse pattern detected</h3>
-            <p id="summaryText">
-              Multiple failed sign-ins followed by a successful authentication from an
-              unfamiliar location. The pattern warrants investigation for possible account compromise.
-            </p>
-          </div>
-        </div>
-        <div class="recommendations">
-          <h3>Recommended analyst actions</h3>
-          <ol>
-            <li>Validate the user's recent sign-in locations and device history.</li>
-            <li>Review MFA and Conditional Access results for the affected account.</li>
-            <li>Temporarily increase monitoring on related identities and IP addresses.</li>
-          </ol>
-        </div>
-        <button id="analyzeBtn" class="secondary-btn">Run AI-style analysis</button>
-      </article>
     </section>
 
     <section class="grid lower-grid">

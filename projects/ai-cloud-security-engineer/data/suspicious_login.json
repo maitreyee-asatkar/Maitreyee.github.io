@@ -1,0 +1,16 @@
+{
+  "event_id": "AUTH-2026-0001",
+  "timestamp": "2026-09-27T02:14:00Z",
+  "user": "alex.morgan",
+  "source_ip": "203.0.113.45",
+  "source_country": "Singapore",
+  "destination_country": "United States",
+  "failed_logins": 17,
+  "successful_login": true,
+  "new_device": true,
+  "mfa_result": "success",
+  "privileged_account": true,
+  "impossible_travel": true,
+  "suspicious_ip": true,
+  "resource": "Microsoft Entra ID"
+}

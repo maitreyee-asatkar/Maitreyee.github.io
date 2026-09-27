@@ -1,60 +1,48 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AI Cloud Security Engineer demo by Maitreyee Asatkar">
-<title>AI Cloud Security Engineer — Live Demo</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sentinel Nexus | AI Cloud Security Lab</title>
+<meta name="description" content="Interactive AI Cloud Security Engineer portfolio lab">
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#070b12;color:#edf2f7;font:15px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1180px;margin:auto;padding:42px 22px}h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:8px 0 16px}h2{margin-top:34px}.muted{color:#9aa6b5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#0f1724;border:1px solid #263246;border-radius:14px;padding:20px}.metric{font-size:30px;font-weight:800}.high{color:#ff7070}.pill{display:inline-block;border:1px solid #344158;border-radius:999px;padding:5px 9px;margin:3px;color:#b8c7dc;font-size:12px}.finding{border-left:3px solid #ff7070;margin:12px 0;padding:10px 14px;background:#0b111c}.btn{display:inline-block;padding:11px 15px;border-radius:8px;text-decoration:none;background:#9b6cff;color:#fff;font-weight:700;margin-right:8px}.btn.secondary{background:#182235}.code{white-space:pre-wrap;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;background:#080d15;padding:16px;border-radius:10px;overflow:auto}li{margin:9px 0}@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body><main>
-<p class="muted">AI CLOUD SECURITY ENGINEER / LIVE PORTFOLIO DEMO</p>
-<h1>Automated Security Analysis Platform</h1>
-<p class="muted">Python + FastAPI + MITRE ATT&amp;CK + optional Azure OpenAI. This demo shows how authentication telemetry becomes explainable security findings and a response plan.</p>
-<p><a class="btn" href="./">← Portfolio</a><a class="btn secondary" href="https://github.com/maitreyee-asatkar/Maitreyee.github.io/tree/main/projects/ai-cloud-security-engineer">Source + README ↗</a></p>
-<section class="grid">
-<div class="card"><div class="metric high">100</div><div class="muted">Risk score</div></div>
-<div class="card"><div class="metric high">HIGH</div><div class="muted">Severity</div></div>
-<div class="card"><div class="metric">6</div><div class="muted">Correlated findings</div></div>
-<div class="card"><div class="metric">3</div><div class="muted">MITRE techniques</div></div>
-</section>
-<h2>Incident: AUTH-2026-0001</h2>
-<div class="card"><p><b>User:</b> alex.morgan</p><p><b>Resource:</b> Microsoft Entra ID</p><p><b>Source:</b> 203.0.113.45 / Singapore</p><p><b>Context:</b> 17 failed logins → successful login, new device, impossible travel, suspicious IP, privileged account.</p></div>
-<h2>MITRE ATT&amp;CK mapping</h2>
-<div class="card"><span class="pill">T1110 — Brute Force</span><span class="pill">T1078 — Valid Accounts</span><span class="pill">T1078.004 — Cloud Accounts</span></div>
-<h2>Explainable findings</h2>
-<div class="card">
-<div class="finding"><b>Repeated authentication failures (+25)</b><br><span class="muted">17 failed logins were observed.</span></div>
-<div class="finding"><b>Successful login after failures (+20)</b><br><span class="muted">A successful authentication followed multiple failures.</span></div>
-<div class="finding"><b>Impossible travel (+25)</b><br><span class="muted">Authentication geography is inconsistent with prior activity.</span></div>
-<div class="finding"><b>Suspicious source IP (+20)</b><br><span class="muted">The source IP is marked suspicious in the test dataset.</span></div>
-<div class="finding"><b>New device (+15)</b><br><span class="muted">Authentication originated from a previously unseen device.</span></div>
-<div class="finding"><b>Privileged account (+10)</b><br><span class="muted">The affected identity has elevated privileges.</span></div>
-</div>
-<h2>Analyst response plan</h2>
-<div class="card"><ol><li>Prioritize review because the affected identity is privileged.</li><li>Temporarily contain the account or session if the activity is confirmed malicious.</li><li>Review recent sign-in history and device registrations.</li><li>Validate whether the login was expected with the user or service owner.</li><li>Review authentication and endpoint telemetry for related activity.</li></ol></div>
-<h2>Cloud architecture</h2>
-<div class="code">Security telemetry
-      ↓
-FastAPI / Pydantic validation
-      ↓
-Deterministic risk engine
-      ↓
-MITRE ATT&amp;CK mapping
-      ↓
-AI analyst (local or Azure OpenAI)
-      ↓
-Structured incident report
-      ↓
-Dashboard / SOC workflow
-
-Azure target:
-Container Apps → Managed Identity → Key Vault
-                     ↓
-                 Azure OpenAI
-                     ↓
-          Application Insights / Logs</div>
-<p class="muted">Demo data only. No production credentials or real customer telemetry are included.</p>
-</main></body></html>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#05060a;color:#e9eef7;font:14px Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(93,245,208,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(93,245,208,.035) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,#000,transparent 85%);z-index:-2}
+body:after{content:"";position:fixed;width:520px;height:520px;right:-180px;top:-170px;background:#5df5d0;opacity:.08;filter:blur(100px);border-radius:50%;z-index:-1}
+.shell{max-width:1400px;margin:auto;padding:18px 24px 70px}.top{height:58px;border-bottom:1px solid #1c2630;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font-weight:800;letter-spacing:.08em}.orb{width:27px;height:27px;border:2px solid #5df5d0;border-radius:50%;box-shadow:0 0 22px #5df5d066;position:relative}.orb:after{content:"";position:absolute;width:7px;height:7px;background:#5df5d0;border-radius:50%;left:8px;top:8px}.status{font-size:11px;color:#7f91a4;letter-spacing:.12em}.status b{color:#5df5d0}
+.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:24px;padding:54px 0 28px}.eyebrow{color:#5df5d0;font-size:11px;letter-spacing:.2em;font-weight:800}.hero h1{font-size:clamp(42px,7vw,82px);line-height:.92;letter-spacing:-.06em;margin:12px 0 22px;max-width:850px}.hero h1 span{color:#7e8cff}.hero p{color:#8998a9;max-width:680px;font-size:16px;line-height:1.7}.actions{margin-top:25px}.btn{display:inline-block;text-decoration:none;color:#05060a;background:#5df5d0;padding:12px 17px;border-radius:6px;font-weight:800;margin-right:8px}.btn.alt{background:#111820;color:#dbe5ee;border:1px solid #26333e}
+.panel{background:rgba(10,15,21,.82);border:1px solid #1e2b35;border-radius:12px;box-shadow:0 18px 60px #0006}.terminal{padding:18px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.8;color:#8ea0af}.terminal .green{color:#5df5d0}.terminal .purple{color:#9ba4ff}.terminal .red{color:#ff6e7a}.terminal .dim{color:#536170}
+.section{margin-top:24px}.section-title{display:flex;align-items:center;gap:10px;margin:38px 0 13px;font-size:11px;letter-spacing:.18em;color:#718293}.section-title:before{content:"";width:25px;height:1px;background:#5df5d0}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #1e2b35;border-radius:12px;overflow:hidden;background:#0a0f15}.metric{padding:22px;border-right:1px solid #1e2b35}.metric:last-child{border:0}.metric .num{font-size:32px;font-weight:850;letter-spacing:-.04em}.metric small{display:block;color:#657587;margin-top:5px;text-transform:uppercase;letter-spacing:.1em;font-size:9px}.danger{color:#ff6674}.mint{color:#5df5d0}.violet{color:#9ba4ff}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.panel.pad{padding:22px}.incident-head{display:flex;justify-content:space-between;align-items:start}.tag{font-size:9px;letter-spacing:.12em;border:1px solid #54313a;color:#ff7882;border-radius:4px;padding:5px 7px}.identity{font-size:25px;font-weight:800;margin:7px 0 3px}.sub{color:#657587}.kv{display:grid;grid-template-columns:110px 1fr;gap:9px;border-top:1px solid #17232d;padding:11px 0}.kv b{color:#566777;font-size:10px;text-transform:uppercase;letter-spacing:.1em}.kv span{color:#d4dde6}
+.score{display:grid;place-items:center;min-height:280px;position:relative}.ring{width:190px;height:190px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#ff5f6d 0 100%,#182029 100%);position:relative;box-shadow:0 0 45px #ff5f6d20}.ring:after{content:"";position:absolute;inset:10px;background:#090e14;border-radius:50%}.scoretext{position:relative;z-index:1;text-align:center}.scoretext strong{font-size:55px;display:block;letter-spacing:-.06em}.scoretext small{color:#ff7380;letter-spacing:.16em;font-weight:800}
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.finding{padding:16px;border:1px solid #1b2933;background:#090e14;border-radius:9px}.finding i{display:block;width:7px;height:7px;border-radius:50%;background:#ff6674;box-shadow:0 0 10px #ff6674;margin-bottom:12px}.finding b{font-size:13px}.finding p{color:#718293;font-size:12px;line-height:1.55;margin:7px 0 0}.plus{color:#ff7380;float:right;font:11px ui-monospace}
+.mitre{display:flex;gap:10px;flex-wrap:wrap}.tech{flex:1;min-width:190px;padding:17px;border:1px solid #26333e;background:#0a1016;border-radius:8px}.tech code{color:#9ba4ff}.tech b{display:block;margin:8px 0}.tech span{color:#68798a;font-size:11px}
+.pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.node{padding:17px 10px;border:1px solid #1e2b35;background:#090e14;text-align:center;border-radius:7px;position:relative}.node:not(:last-child):after{content:"→";position:absolute;right:-12px;top:26px;color:#5df5d0;z-index:2}.node strong{display:block;color:#e2e9f0;font-size:11px}.node span{display:block;color:#607283;font-size:9px;margin-top:6px}
+.response{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.action{padding:18px;border:1px solid #1e2b35;background:#090e14;border-radius:8px}.action em{font-style:normal;color:#5df5d0;font:11px ui-monospace}.action b{display:block;margin:8px 0}.action span{color:#68798a;font-size:11px;line-height:1.5}
+footer{margin-top:55px;padding-top:18px;border-top:1px solid #17232d;color:#536170;font-size:11px;display:flex;justify-content:space-between}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}.pipeline{grid-template-columns:repeat(3,1fr)}.node:not(:last-child):after{display:none}.response{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2){border-right:0}.metric{border-bottom:1px solid #1e2b35}}
+@media(max-width:560px){.shell{padding:14px}.hero{padding-top:38px}.hero h1{font-size:48px}.findings{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><div class="shell">
+<header class="top"><div class="brand"><span class="orb"></span>SENTINEL NEXUS</div><div class="status"><b>● SYSTEM ONLINE</b> &nbsp; / &nbsp; DEMO ENVIRONMENT</div></header>
+<section class="hero"><div><div class="eyebrow">AI CLOUD SECURITY ENGINEER / SOC LAB 01</div><h1>Turn raw signals into <span>security decisions.</span></h1><p>A portfolio-grade security analytics platform built with Python and FastAPI. It validates cloud authentication telemetry, correlates risk signals, maps MITRE ATT&amp;CK techniques, and produces evidence-grounded analyst guidance.</p><div class="actions"><a class="btn" href="./">OPEN PORTFOLIO ↗</a><a class="btn alt" href="https://github.com/maitreyee-asatkar/Maitreyee.github.io/tree/main/projects/ai-cloud-security-engineer">VIEW SOURCE</a></div></div>
+<div class="panel terminal"><div class="dim">$ sentinel analyze --event AUTH-2026-0001</div><div>&nbsp;</div><div><span class="green">VALIDATION</span> passed</div><div><span class="green">RISK ENGINE</span> 6 signals correlated</div><div><span class="purple">MITRE</span> T1110 / T1078 / T1078.004</div><div><span class="red">SEVERITY</span> HIGH</div><div><span class="red">RISK SCORE</span> 100 / 100</div><div>&nbsp;</div><div class="dim">AI analyst: evidence-grounded mode</div><div class="green">ready_▮</div></div></section>
+<div class="section-title">TELEMETRY SNAPSHOT</div>
+<section class="metrics"><div class="metric"><div class="num danger">100</div><small>Risk score</small></div><div class="metric"><div class="num danger">HIGH</div><small>Incident severity</small></div><div class="metric"><div class="num mint">06</div><small>Correlated findings</small></div><div class="metric"><div class="num violet">03</div><small>MITRE techniques</small></div></section>
+<div class="section-title">INCIDENT INVESTIGATION</div>
+<section class="layout"><div class="panel pad"><div class="incident-head"><div><div class="sub">AUTHENTICATION INCIDENT</div><div class="identity">AUTH-2026-0001</div><div class="sub">alex.morgan · privileged identity</div></div><div class="tag">ACTIVE INVESTIGATION</div></div><div style="height:20px"></div><div class="kv"><b>Resource</b><span>Microsoft Entra ID</span></div><div class="kv"><b>Source</b><span>203.0.113.45 · Singapore</span></div><div class="kv"><b>Sequence</b><span>17 failed logins → successful authentication</span></div><div class="kv"><b>Context</b><span>New device · impossible travel · suspicious IP</span></div></div>
+<div class="panel score"><div class="ring"><div class="scoretext"><strong>100</strong><small>HIGH RISK</small></div></div></div></section>
+<div class="section-title">WHY THE ENGINE FLAGGED IT</div>
+<section class="findings"><div class="finding"><i></i><b>Repeated authentication failures</b><span class="plus">+25</span><p>17 failed login attempts crossed the brute-force threshold.</p></div><div class="finding"><i></i><b>Successful login after failures</b><span class="plus">+20</span><p>A successful authentication followed the failed attempts.</p></div><div class="finding"><i></i><b>Impossible travel</b><span class="plus">+25</span><p>Authentication geography is inconsistent with prior activity.</p></div><div class="finding"><i></i><b>Suspicious source IP</b><span class="plus">+20</span><p>The test telemetry marks the originating IP as suspicious.</p></div><div class="finding"><i></i><b>New device</b><span class="plus">+15</span><p>The authentication came from a previously unseen device.</p></div><div class="finding"><i></i><b>Privileged account</b><span class="plus">+10</span><p>Elevated privileges increase the potential impact of compromise.</p></div></section>
+<div class="section-title">MITRE ATT&amp;CK CORRELATION</div>
+<section class="mitre"><div class="tech"><code>T1110</code><b>Brute Force</b><span>Credential access / repeated authentication attempts</span></div><div class="tech"><code>T1078</code><b>Valid Accounts</b><span>Potential use of legitimate credentials</span></div><div class="tech"><code>T1078.004</code><b>Cloud Accounts</b><span>Valid account behavior in a cloud identity context</span></div></section>
+<div class="section-title">DETECTION PIPELINE</div>
+<section class="panel pad"><div class="pipeline"><div class="node"><strong>Telemetry</strong><span>Auth events</span></div><div class="node"><strong>FastAPI</strong><span>Pydantic</span></div><div class="node"><strong>Risk Engine</strong><span>Deterministic</span></div><div class="node"><strong>MITRE</strong><span>Technique map</span></div><div class="node"><strong>AI Analyst</strong><span>Local / Azure</span></div><div class="node"><strong>SOC Report</strong><span>Response-ready</span></div></div></section>
+<div class="section-title">ANALYST RESPONSE PLAYBOOK</div>
+<section class="response"><div class="action"><em>01 / CONTAIN</em><b>Protect the identity</b><span>Temporarily contain the account or session if activity is confirmed malicious.</span></div><div class="action"><em>02 / VERIFY</em><b>Validate the user context</b><span>Review sign-in history, device registration and expected travel/activity.</span></div><div class="action"><em>03 / HUNT</em><b>Expand the investigation</b><span>Correlate identity, endpoint and authentication telemetry for related activity.</span></div></section>
+<div class="section-title">CLOUD DEPLOYMENT TARGET</div>
+<section class="panel pad"><div class="code" style="color:#8798a8;line-height:1.8">GitHub Actions → Azure Container Apps → Managed Identity → Key Vault
+                                              ↘ Azure OpenAI
+                                              ↘ Application Insights / Logs</div></section>
+<footer><span>DEMO DATA ONLY · NO PRODUCTION CREDENTIALS</span><span>Python · FastAPI · MITRE ATT&amp;CK · Azure OpenAI</span></footer>
+</div></body></html>

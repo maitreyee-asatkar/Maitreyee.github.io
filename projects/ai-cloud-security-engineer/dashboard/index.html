@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Cloud Security Engineer | Maitreyee Asatkar</title>
+<style>
+body{margin:0;background:#070b12;color:#edf2f7;font:15px Inter,system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:42px 22px}h1{font-size:clamp(34px,6vw,64px);margin:8px 0}.muted{color:#9aa6b5}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#0f1724;border:1px solid #263246;border-radius:14px;padding:20px}.metric{font-size:30px;font-weight:800}.high{color:#ff7070}.medium{color:#ffc85c}.pill{display:inline-block;border:1px solid #344158;border-radius:999px;padding:5px 9px;margin:3px;color:#b8c7dc;font-size:12px}.finding{border-left:3px solid #ff7070;margin:12px 0;padding:10px 14px;background:#0b111c}.btn{display:inline-block;padding:11px 15px;border-radius:8px;text-decoration:none;background:#9b6cff;color:white;font-weight:700}.code{white-space:pre-wrap;font:13px ui-monospace,monospace;background:#080d15;padding:16px;border-radius:10px;overflow:auto} @media(max-width:800px){.grid{grid-template-columns:1fr 1fr}} @media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<p class="muted">AI CLOUD SECURITY ENGINEER / SECURITY ANALYTICS DEMO</p>
+<h1>Automated Security Analysis Platform</h1>
+<p class="muted">Python + FastAPI + MITRE ATT&CK + optional Azure OpenAI. This dashboard demonstrates how authentication telemetry can be transformed into explainable security findings and response guidance.</p>
+<p><a class="btn" href="../">← Project source</a></p>
+<section class="grid">
+<div class="card"><div class="metric high">100</div><div class="muted">Risk score</div></div>
+<div class="card"><div class="metric high">HIGH</div><div class="muted">Severity</div></div>
+<div class="card"><div class="metric">6</div><div class="muted">Correlated findings</div></div>
+<div class="card"><div class="metric">3</div><div class="muted">MITRE techniques</div></div>
+</section>
+<h2>Incident: AUTH-2026-0001</h2>
+<div class="card"><p><b>User:</b> alex.morgan</p><p><b>Resource:</b> Microsoft Entra ID</p><p><b>Source:</b> 203.0.113.45 / Singapore</p><p><b>Context:</b> 17 failed logins → successful login, new device, impossible travel, suspicious IP, privileged account.</p></div>
+<h2>MITRE ATT&CK mapping</h2>
+<div class="card"><span class="pill">T1110 — Brute Force</span><span class="pill">T1078 — Valid Accounts</span><span class="pill">T1078.004 — Cloud Accounts</span></div>
+<h2>Explainable findings</h2>
+<div class="card">
+<div class="finding"><b>Repeated authentication failures (+25)</b><br><span class="muted">17 failed logins were observed.</span></div>
+<div class="finding"><b>Successful login after failures (+20)</b><br><span class="muted">A successful authentication followed multiple failures.</span></div>
+<div class="finding"><b>Impossible travel (+25)</b><br><span class="muted">Authentication geography is inconsistent with prior activity.</span></div>
+<div class="finding"><b>Suspicious source IP (+20)</b><br><span class="muted">The source IP is marked suspicious in the test dataset.</span></div>
+<div class="finding"><b>New device (+15)</b><br><span class="muted">Authentication originated from a previously unseen device.</span></div>
+<div class="finding"><b>Privileged account (+10)</b><br><span class="muted">The affected identity has elevated privileges.</span></div>
+</div>
+<h2>Analyst response plan</h2>
+<div class="card"><ol><li>Prioritize review because the affected identity is privileged.</li><li>Temporarily contain the account or session if the activity is confirmed malicious.</li><li>Review recent sign-in history and device registrations.</li><li>Validate whether the login was expected with the user or service owner.</li><li>Review authentication and endpoint telemetry for related activity.</li></ol></div>
+<h2>Architecture</h2>
+<div class="code">Security telemetry
+      ↓
+FastAPI / Pydantic validation
+      ↓
+Deterministic risk engine
+      ↓
+MITRE ATT&CK mapping
+      ↓
+AI analyst (local or Azure OpenAI)
+      ↓
+Structured incident report
+      ↓
+Dashboard / SOC workflow</div>
+<p class="muted">Demo data only. No production credentials or real customer telemetry are included.</p>
+</main></body></html>
